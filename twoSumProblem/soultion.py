@@ -1,29 +1,20 @@
 
 
 def turnArray_Dict(nums):
-    dictionary = {x: x in nums for x in nums}
-
-    return dictionary 
+    return {num: index for index, num in enumerate(nums)}
 
 
-def getIndexDict(nums):
-    findIndex = {}
-    for i in range(len(nums)):
-        findIndex[nums[i]] = i 
-        
-    return findIndex
-        
 
 
 def sums(nums, target):
-    table = turnArray_Dict(nums)
-    findIndex = getIndexDict(nums)
+    
+    findIndex = turnArray_Dict(nums)
     
     
     for i in range(len(nums)):
         searchNum = target - nums[i]
-        if (table.get(searchNum) == True):
-            if (i == findIndex[searchNum]): # This is added to make sure that you don't get the same index twice
+        if (findIndex.get(searchNum) != None):
+            if (i == findIndex[searchNum]): 
                 continue
             return [i, findIndex[searchNum]]
         
@@ -31,7 +22,12 @@ def sums(nums, target):
     return -1 
 
 
+array = [1, 2, 3, 4]
 
+findIndex = {num: index for index, num in enumerate(array)}
+
+
+print(findIndex[3])
 
     
 
